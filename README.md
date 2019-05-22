@@ -1,4 +1,4 @@
 # pureMVC-test
 
-***Test job for produce clear MVC pattern
+***Test job for produce clear MVC pattern***
 
