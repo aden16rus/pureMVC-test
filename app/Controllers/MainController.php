@@ -40,6 +40,11 @@ class MainController {
         $this->view->generate('index', $data, $msg, $msgType);
     }
 
+
+    /**
+     *  Create new job
+     */
+
     public function create()
     {
 
@@ -62,11 +67,21 @@ class MainController {
 
     }
 
+
+    /**
+     *  Job edit form
+     */
+
     public function edit($id)
     {
         $jobData = (new Model)->getById($id);
         $this->view->generate('edit', $jobData);
     }
+
+
+    /**
+     * Update job information
+     */
 
     public function update($id)
     {
@@ -76,7 +91,6 @@ class MainController {
         } else {
             echo $job->getLastError();
         }
-
     }
 
 }

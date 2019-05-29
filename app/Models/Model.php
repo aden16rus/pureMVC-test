@@ -4,6 +4,7 @@
 
     class Model
     {
+
         private $mysql;
 
         private $data;
@@ -16,6 +17,11 @@
         {
             $this->mysql = new Mysql;
         }
+
+
+        /**
+         * Data for save to db
+         */
 
         public function fillFields($request)
         {
@@ -31,6 +37,11 @@
 
 
         }
+
+
+        /**
+         * Simple data validation before save
+         */
 
         private function checkData($request)
         {
@@ -54,6 +65,14 @@
             return $data;
         }
 
+
+        /**
+         * Create new job
+         *
+         * @return mixed
+         * @throws Exception
+         */
+
         public function save()
         {
             if (!$this->mysql->store($this->data)) {
@@ -63,6 +82,7 @@
             }
         }
 
+
         /**
          * @return mixed
          */
@@ -71,20 +91,53 @@
             return $this->data;
         }
 
+
+        /**
+         * Get job list from db
+         *
+         * @param int $page
+         * @param string $sort
+         * @param string $order
+         * @return mixed
+         */
+
         public function getJobs($page, $sort = 'id', $order = 'asc')
         {
             return $this->mysql->getJobs($page, $sort, $order);
         }
+
+
+        /**
+         * Pages count for pagenator
+         *
+         * @return mixed
+         */
 
         public function getPages()
         {
             return $this->mysql->countJobs();
         }
 
+
+        /**
+         * Get one job
+         *
+         * @param int $id
+         * @return mixed
+         */
+
         public function getById($id)
         {
             return ($this->mysql->getById($id))[0];
         }
+
+
+        /**
+         * Write updated job
+         *
+         * @param int $id
+         * @return bool|mysqli_result
+         */
 
         public function update($id)
         {
@@ -94,6 +147,13 @@
             return $this->mysql->update($id, $text, $status);
 
         }
+
+
+        /**
+         * Get last mysql query error
+         *
+         * @return string
+         */
 
         public function getLastError()
         {
